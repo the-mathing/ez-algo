@@ -33,7 +33,6 @@
   )
 }
 
-
 #let algo_header(input: none,output: none) = {
   let a
   if input != none and type(input) != "array" {
@@ -61,14 +60,14 @@
   pseudocode: (),
   input: none,
   output: none,
-  indent_keywords: none,
-  dedent_keywords: none,
-  other_keywords: none,
-  line_color : black,
-  line_stroke: 1pt + black,
-  number_color: black,
+  indent-keywords: none,
+  dedent-keywords: none,
+  other-keywords: none,
+  line-color : black,
+  line-stroke: 1pt + black,
+  number-color: black,
   fill: (x, y) =>  if calc.even(y) {gray.lighten(70%)}, 
-  head_color: none,
+  head-color: none,
 ) = {
 
   let test = pseudocode
@@ -78,20 +77,20 @@
   let indent_array = range(test.len()).map(x => 0)
   let trigger = false;
 
-  if indent_keywords != none and dedent_keywords != none and other_keywords != none{
+  if indent-keywords != none and dedent-keywords != none and other-keywords != none{
   for it in range(test.len()){
     if type(test.at(it)) == content {
       if test.at(it).has("children") {
         for body in test.at(it).children {
           if body.func() == strong{
-            if other_keywords.contains(body.body){
+            if other-keywords.contains(body.body){
               indent_array.at(it) = indent - 1
               trigger = true
-            } else if  indent_keywords.contains(body.body)  {
+            } else if  indent-keywords.contains(body.body)  {
               indent_array.at(it) = indent
               indent = indent +1
               trigger = true
-            } else if dedent_keywords.contains(body.body) {
+            } else if dedent-keywords.contains(body.body) {
               indent = indent -1
               indent_array.at(it) = indent
               trigger = true
@@ -100,15 +99,15 @@
         }
       }
       if test.at(it).has("body"){
-        if other_keywords.contains(test.at(it).body){
+        if other-keywords.contains(test.at(it).body){
           indent_array.at(it) = indent - 1
           trigger = true
-        }else if indent_keywords.contains(test.at(it).body) {
+        }else if indent-keywords.contains(test.at(it).body) {
         //test.at(it).body == [while] or test.at(it).body == [if]{ 
           indent_array.at(it) = indent
           indent = indent + 1
           trigger = true
-        } else if dedent_keywords.contains(test.at(it).body){ 
+        } else if dedent-keywords.contains(test.at(it).body){ 
           indent = indent - 1
           indent_array.at(it) = indent
           trigger = true
@@ -122,17 +121,17 @@
   }}
   
   for it in range(test.len()){
-    algo_ray.at(it) = ind(input_text: [#text(test.at(it),line_color)], stroke: line_stroke,level: indent_array.at(it))
+    algo_ray.at(it) = ind(input_text: [#text(test.at(it),line-color)], stroke: line-stroke,level: indent_array.at(it))
   }
   
-  let numbers = range(1,algo_ray.len()+1).map(x => text([#x],number_color))
+  let numbers = range(1,algo_ray.len()+1).map(x => text([#x],number-color))
   let a = numbers.zip(algo_ray).flatten()
   let head_stroke = false
   let filling = (x,y) => fill(x,y)
   if input != none or output != none {
     a = ([],algo_header(input: input,output: output)) + a
     head_stroke = true
-    filling = (x,y) => if y >= 1 {fill(x,y)} else {head_color}
+    filling = (x,y) => if y >= 1 {fill(x,y)} else {head-color}
   } 
   let nums = range(0, a.len() )
 
@@ -156,18 +155,28 @@
 
 } 
 
+
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ez-algo(body, ...)
+% is basically an wrapper for the ez-algo-backend 
+% function which is doning the real work 
+% The ez-algo-bckend needs an array to make the 
+% algorithm. Therefore the body is seperated into 
+% an array by linebreak.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 #let ez-algo(body,
                input: none,
               output: none,
                 fill: (x, y) =>  if calc.even(y) {gray.lighten(70%)},
-          head_color: none,
+          head-color: none,
               stroke: none,
-     indent_keywords: ([while], [if], [for]),
-     dedent_keywords: ([end while], [end if]),
-      other_keywords: ([else], [else if], [end for]),
+     indent-keywords: ([while], [if], [for]),
+     dedent-keywords: ([end while], [end if]),
+      other-keywords: ([else], [else if], [end for]),
               indent: true,
                inset: 5pt,
-       content_color: (numbers: black, stroke: 1pt +black, lines: black),
+       content-color: (numbers: black, stroke: 1pt +black, lines: black),
 ) = {
   let liste = ()
   let tmp = [] 
@@ -185,9 +194,9 @@
 
   // Disable the indeting with one command
   if not indent{
-    indent_keywords=none
-    dedent_keywords=none
-    other_keywords=none}
+    indent-keywords=none
+    dedent-keywords=none
+    other-keywords=none}
 
     
   rect(stroke:stroke,
@@ -197,11 +206,11 @@
           output: output,
       pseudocode: liste,
             fill: fill,
-      head_color: head_color,
- indent_keywords: indent_keywords,
- dedent_keywords: dedent_keywords,
-  other_keywords: other_keywords,
-     line_color : content_color.lines,
-     line_stroke: content_color.stroke,
-    number_color: content_color.numbers,)]
+      head-color: head-color,
+ indent-keywords: indent-keywords,
+ dedent-keywords: dedent-keywords,
+  other-keywords: other-keywords,
+     line-color : content-color.lines,
+     line-stroke: content-color.stroke,
+    number-color: content-color.numbers,)]
 }
