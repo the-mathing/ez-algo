@@ -9,6 +9,8 @@ It indents and dedents the lines based on some simple keywords, which you can ch
 <td>
 
 ```typst
+#import "@preview/ez-algo:0.1.0": ez-algo
+
 #ez-algo(
   input: [$a,b in ZZ$],
   output: [gcd of $a,b$],
@@ -36,6 +38,8 @@ It indents and dedents the lines based on some simple keywords, which you can ch
 <td>
 
 ```typst
+#import "@preview/ez-algo:0.1.0": ez-algo
+
 #ez-algo(
   indent-keywords: ([while], [if], [function]),
 )[
