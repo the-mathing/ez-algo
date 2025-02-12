@@ -1,15 +1,12 @@
 # ez-algo
 
 A package to set algorithms in typst with ease.
-It indents and dedents the lines based on some simple keywords, which you can cahnge if you like to.
+It indents and dedents the lines based on some simple keywords, which you can change if you like to.
 
-
+## Examples
 
 <table><tr>
-  <td>
-      <img src="gallery/euclid.png" width="250px">
-  </td>
-  <td>
+<td>
 
 ```typst
 #ez-algo(
@@ -26,25 +23,36 @@ It indents and dedents the lines based on some simple keywords, which you can ca
   *end while*
 ]
 ``` 
+
+</td>
+<td>
+      <img src="gallery/euclid.png" width="250px">
+  </td>
+  <td>
 </tr>
 </table>
 
+- When no input and ouput keyword is used no head is shown
+
+- you can change the language of the input or ouput by giving a string to the input
+
+## documentation
+
 ```typst
-#let ez-algo(body,
+#let ez-algo(
                input: none,
               output: none,
                 fill: (x, y) =>  if calc.even(y) {gray.lighten(70%)},
           head_color: none,
               stroke: none,
-     indent_keywords: ([while], [if], [for]),
-     dedent_keywords: ([end while], [end if]),
-      other_keywords: ([else], [else if], [end for]),
+     indent-keywords: ([while], [if], [for]),
+     dedent-keywords: ([end while], [end if]),
+      other-keywords: ([else], [else if], [end for]),
               indent: true,
                inset: 5pt,
        content_color: (numbers: black, stroke: 1pt +black, lines: black),
+                body)
 ```
-
-## ez-algo
 
 **input**: ```string``` or ```array``` sets the input in der heading of the algorithm. To change the keyword input set an array.
 Default: ```none```
@@ -53,33 +61,29 @@ Default: ```none```
 Default: ```none```
 
 **fill:** ```string``` or ```array``` sets the input in der heading of the algorithm. To change the keyword input set an array.
-Default: 
-```typst
-(x, y) =>  if calc.even(y) {gray.lighten(70%)}
-```
+Default:```(x, y) =>  if calc.even(y) {gray.lighten(70%)}```
 
-**head_color:** 
+**head-color:** 
 Default: ```none```
 
 **stroke:** ```none``` or ```length``` or ```color``` or ```gradient``` or ```array``` or ```stroke``` or ```pattern``` or ```dictionary``` or ```function```,
 Default: ```none```
 
-**indent_keywords:** ```array```
-Default: 
-([while], [if], [for])
+**indent-keywords:** ```array```
+Default: ```([while], [if], [for])```
 
-**dedent_keywords:** ```array```
-([end while], [end if])
+**dedent-keywords:** ```array```
+Default: ```([end while], [end if])```
 
-**other_keywords:** ```array```
-
-([else], [else if], [end for])
+**other-keywords:** ```array```
+Default: ```([else], [else if], [end for])```
 
 **indent:** ```bool```
-Defaut: true
+Defaut: ```true```
 
-**inset:** 5pt
+**inset:** 
+Default: ```5pt```
 
-**content_color:** ```dictionary```
-(numbers: black, stroke: 1pt +black, lines: black),
+**content-color:** ```dictionary```
+Default: ```(numbers: black, stroke: 1pt +black, lines: black)```
 
