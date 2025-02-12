@@ -32,11 +32,34 @@ It indents and dedents the lines based on some simple keywords, which you can ch
 </tr>
 </table>
 
-- When no input and ouput keyword is used no head is shown
+<table><tr>
+<td>
 
-- you can change the language of the input or ouput by giving a string to the input
+```typst
+#ez-algo(
+  indent-keywords: ([while], [if], [function]),
+)[
+  *function* $"gcd"(a,b)$ \
+  *while* $a != b$ \
+  *if* $a>b$\
+        $a <- a - b$ \
+  *else* \
+        $b <- b - a$ \
+  *end if* \
+  *end while*
+]
+``` 
 
-## documentation
+</td>
+<td>
+      <img src="gallery/euclid2.png" width="250px">
+  </td>
+  <td>
+</tr>
+</table>
+
+
+## Documentation
 
 ```typst
 #let ez-algo(
@@ -46,18 +69,18 @@ It indents and dedents the lines based on some simple keywords, which you can ch
           head_color: none,
               stroke: none,
      indent-keywords: ([while], [if], [for]),
-     dedent-keywords: ([end while], [end if]),
-      other-keywords: ([else], [else if], [end for]),
+     dedent-keywords: ([end while], [end if], [end for]),
+      other-keywords: ([else], [else if]),
               indent: true,
                inset: 5pt,
        content_color: (numbers: black, stroke: 1pt +black, lines: black),
                 body)
 ```
 
-**input**: ```string``` or ```array``` sets the input in der heading of the algorithm. To change the keyword input set an array.
+**input**: ```string``` or ```array``` sets the input in der heading of the algorithm. To change the keyword input set an array. You can change the language by set input to an array (ie. for german ``` ([*Eingabe:*],[some input variables])```)
 Default: ```none```
 
-**output**: ```string``` or ```array``` sets the output in der heading of the algorithm. To change the keyword input set an array.
+**output**: ```string``` or ```array``` sets the output in der heading of the algorithm. To change the keyword input set an array.You can change the language by set output to an array (ie. for german ``` ([*Ausgabe:*],[some output variables])```
 Default: ```none```
 
 **fill:** ```string``` or ```array``` sets the input in der heading of the algorithm. To change the keyword input set an array.
