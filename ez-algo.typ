@@ -183,13 +183,21 @@
   if body.has("children"){
   for elem in body.children{
     if elem == linebreak() {
+      if tmp.children == (parbreak(),) or tmp.children == ([ ],) {
+        liste.push(text(fill: gray.transparentize(100%))[-])
+      } else {
       liste.push(tmp)
+      }
       tmp = []
     } else {
        tmp = tmp + elem
     }
   }
-  liste.push(tmp)
+  if tmp.children == (parbreak(),) or tmp.children == ([ ],)  {
+        liste.push(text(fill: gray.transparentize(100%))[-])
+      } else {
+      liste.push(tmp)
+      }
   }else{liste = ([],)}
 
   // Disable the indeting with one command
