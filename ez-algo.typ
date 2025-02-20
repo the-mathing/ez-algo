@@ -35,11 +35,11 @@
 
 #let algo-header(input: none,output: none) = {
   let a
-  if input != none and type(input) != "array" {
+  if input != none and type(input) != array {
       input = ([*Input:*],[#input])
   }
 
-  if output != none and type(output) != "array" {
+  if output != none and type(output) != array {
       output = ([*Output:*],[#output])
   }
 
